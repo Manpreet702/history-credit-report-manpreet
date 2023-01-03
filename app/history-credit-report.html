@@ -1,0 +1,133 @@
+<meta Status="viewport" content="width=device-width, initial-scale=1" />
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+<div class="example-container mat-elevation-z8">
+  <h4 style="margin-left: 20px">
+    Historical Credit Report <i class="fa fa-hourglass"></i>
+  </h4>
+
+  <mat-table #table [dataSource]="dataSource" matSort>
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="Date">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Date
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.Date}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="Status">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Status
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.Status}} </mat-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="PaymentRating">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Payment Rating
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.PaymentRating}} </mat-cell>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="Occurence">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Occurence
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.Occurence}} </mat-cell>
+    </ng-container>
+
+    <!-- Comments Column -->
+    <ng-container matColumnDef="Comments">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Comments
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.Comments}} </mat-cell>
+    </ng-container>
+
+    <!-- ComplianceCode Column -->
+    <ng-container matColumnDef="ComplianceCode">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Compliance Code
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{element.ComplianceCode}}
+      </mat-cell>
+    </ng-container>
+
+    <!-- Balance Column -->
+    <ng-container matColumnDef="Balance">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Balance
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">$ {{element.Balance}} </mat-cell>
+    </ng-container>
+
+    <!-- LAstPaymentDate Column -->
+    <ng-container matColumnDef="LastPaymentDate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Last Payment Date
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{element.LastPaymentDate}}
+      </mat-cell>
+    </ng-container>
+
+    <!-- AmountPastDue Column -->
+    <ng-container matColumnDef="AmountPastDue">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Amount Past Due
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.AmountPastDue}} </mat-cell>
+    </ng-container>
+
+    <!-- ECOACode Column -->
+    <ng-container matColumnDef="ECOACode">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        ECOA Code
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.ECOACode}} </mat-cell>
+    </ng-container>
+
+    <!-- InfoIndicator Column -->
+    <ng-container matColumnDef="InfoIndicator">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        InfoIndicator
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.InfoIndicator}} </mat-cell>
+    </ng-container>
+
+    <!-- Details Column -->
+    <ng-container matColumnDef="Details">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Details
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <mat-icon>keyboard_arrow_down</mat-icon>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row
+      *matRowDef="let row; columns: displayedColumns;"
+      matRipple
+      class="element-row"
+      [cdkDetailRow]="row"
+      [cdkDetailRowTpl]="tpl"
+    >
+    </mat-row>
+  </mat-table>
+</div>
+
+<ng-template #tpl let-element>
+  <div class="mat-row detail-row" [@detailExpand] style="overflow: hidden">
+    Your Balance is ${{element.Balance}}
+  </div>
+</ng-template>
